@@ -4,7 +4,7 @@ import AppBar from './components/AppBar.vue';
 import CustomFooter from './components/CustomFooter.vue';
 import CartPopup from './components/CartPopup.vue';
 import { ref, onMounted } from "vue";
-import init from './wasm/pkg/cart_calculator';
+import init from './wasm/cart_calculator';
 
 const cartDialogVisible = ref(false);
 const cartItems = ref([

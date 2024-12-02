@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { calculate_cart_total } from '../wasm/pkg/cart_calculator';
+import { calculate_cart_total } from '../wasm/cart_calculator';
 
 const CART_STORAGE_KEY = "shopping_cart";
 
