@@ -3,7 +3,8 @@ import { RouterView } from 'vue-router';
 import AppBar from './components/AppBar.vue';
 import CustomFooter from './components/CustomFooter.vue';
 import CartPopup from './components/CartPopup.vue';
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import init from './wasm/pkg/cart_calculator';
 
 const cartDialogVisible = ref(false);
 const cartItems = ref([
@@ -28,6 +29,18 @@ const cartItems = ref([
 const openCart = () => {
   cartDialogVisible.value = true;
 };
+
+const initWasm = async () => {
+  try {
+    await init();
+  } catch (err) {
+    console.error('Error initializing WASM module:', err);
+  }
+};
+
+onMounted(() => {
+  initWasm();
+});
 
 </script>
 

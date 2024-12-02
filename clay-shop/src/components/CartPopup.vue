@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref, onMounted } from "vue";
+import { ref, onMounted } from "vue";
+import { calculate_cart_total } from '../wasm/pkg/cart_calculator';
 
 const CART_STORAGE_KEY = "shopping_cart";
 
@@ -29,9 +30,13 @@ const decrementItem = (index) => {
   }
 };
 
-const totalAmount = computed(() => {
-  return cartItems.value.reduce((total, item) => total + item.price * item.quantity, 0);
-});
+const totalAmount = () => {
+  const prices = cartItems.value.map((x) => x.price);
+  const quantities = cartItems.value.map((x) => x.quantity);
+
+  const total = calculate_cart_total(prices, quantities);
+  return total;
+};
 
 onMounted(() => {
   loadCartFromStorage();
@@ -159,7 +164,7 @@ const clearCart = () => {
 
       <v-card-text class="d-flex justify-space-between align-center">
         <span class="text-h6">Total Amount</span>
-        <span class="text-h6 font-weight-bold">${{ totalAmount }}</span>
+        <span class="text-h6 font-weight-bold">${{ totalAmount() }}</span>
       </v-card-text>
 
       <v-divider />

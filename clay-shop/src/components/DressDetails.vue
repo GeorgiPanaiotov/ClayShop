@@ -54,8 +54,8 @@ const addToCart = (item) => {
   } else {
     cartItems.value.push({ ...item, quantity: 1 });
   }
-  existingItem.selectedSizes.filter((x) => x !== '');
-  existingItem.selectedColors.filter((x) => x !== '');
+  existingItem?.selectedSizes.filter((x) => x !== '');
+  existingItem?.selectedColors.filter((x) => x !== '');
   updateCartInStorage();
 };
 
