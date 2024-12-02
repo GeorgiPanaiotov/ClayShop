@@ -4,6 +4,7 @@
 
 # Feature list
 - Responsive Design
+- WASM calculation for the total amount in cart 
 - Dynamic Reviews
 - Mocked Data
 - Routing
