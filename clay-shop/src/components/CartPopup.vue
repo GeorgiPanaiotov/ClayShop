@@ -70,6 +70,12 @@ const previousStep = () => {
     activeTab.value -= 1;
   }
 };
+
+const clearCart = () => {
+  cartItems.value = [];
+  updateCartInStorage();
+  closeDialog();
+};
 </script>
 
 <template>
@@ -103,7 +109,8 @@ const previousStep = () => {
               </v-col>
               <v-col cols="6">
                 <div class="text-subtitle-1 font-weight-bold">{{ item.name }}</div>
-                <div class="text-caption">Size: <span class="mr-1" v-for="(size, index) in item.selectedSizes" :key="index">{{ size
+                <div class="text-caption">Size: <span class="mr-1" v-for="(size, index) in item.selectedSizes"
+                    :key="index">{{ size
                     }}</span>
                 </div>
                 <div class="text-caption">Color: <v-icon v-for="(color, index) in item.selectedColors" :color="color"
@@ -162,6 +169,7 @@ const previousStep = () => {
         <v-btn outlined color="#EDA3B5" @click="previousStep" v-if="activeTab !== 0">Back</v-btn>
         <v-spacer></v-spacer>
         <v-btn color="#EDA3B5" @click="nextStep" v-if="activeTab !== 3" variant="elevated">Continue</v-btn>
+        <v-btn color="#EDA3B5" @click="clearCart" v-else variant="elevated">Back to Shop</v-btn>
       </v-card-actions>
 
     </v-card>
